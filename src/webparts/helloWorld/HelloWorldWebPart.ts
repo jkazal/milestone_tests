@@ -33,6 +33,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart <IHelloWorl
   <p>Dropdown sélectionné: ${ this.properties.dropdown } </p>
   <p>Checkbox cochée? ${this.properties.checkbox ? 'BLABLA TRUE' : 'BLA FALSE'}</p> 
     <p class="${ styles.description }">${escape(this.properties.description)}</p>
+    <p class="${ styles.description }">titrre page: ${escape(this.context.pageContext.web.title)}</p>
+
       <a href="https://aka.ms/spfx" class="${ styles.button }">
         <span class="${ styles.label }">Learn more</span>
           </a>
