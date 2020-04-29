@@ -14,6 +14,10 @@ import * as strings from 'HelloWorldWebPartStrings';
 
 export interface IHelloWorldWebPartProps {
   description: string;
+  test: string,
+    checkbox: boolean,
+  dropdown: string,
+  toggle: boolean
 }
 
 export default class HelloWorldWebPart extends BaseClientSideWebPart <IHelloWorldWebPartProps> {
@@ -26,6 +30,8 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart <IHelloWorl
         <div class="${ styles.column }">
           <span class="${ styles.title }">Welcome to SharePoint!</span>
   <p class="${ styles.subTitle }">Customize SharePoint experiences using Web Parts.</p>
+  <p>Dropdown sélectionné: ${ this.properties.dropdown } </p>
+  <p>Checkbox cochée? ${this.properties.checkbox ? 'BLABLA TRUE' : 'BLA FALSE'}</p> 
     <p class="${ styles.description }">${escape(this.properties.description)}</p>
       <a href="https://aka.ms/spfx" class="${ styles.button }">
         <span class="${ styles.label }">Learn more</span>
@@ -54,14 +60,25 @@ export default class HelloWorldWebPart extends BaseClientSideWebPart <IHelloWorl
               PropertyPaneTextField('description', {
                 label: strings.DescriptionFieldLabel
               }),
+              PropertyPaneTextField('test', {
+                label: strings.MultiLineTextField,
+                multiline: true
+              }),
               PropertyPaneCheckbox('checkbox', {
                     text: strings.TestCheckbox
               }),
               PropertyPaneDropdown('dropdown', {
-                  label: strings.TestDropdown
+                  label: strings.TestDropdown,
+                  options: [
+                    { key: '1', text: strings.Emails },
+                    { key: '2', text: strings.Tasks },
+                    { key: '3', text: strings.Events }
+                  ]
               }),
               PropertyPaneToggle('toggle', {
-                label: strings.TestToggle
+                label: strings.TestToggle,
+                onText: strings.On,
+                offText: strings.Off
             })
             ]
           }
